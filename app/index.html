@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html ng-app="myDrafts">
+<head>
+	<title>My Drafts in the clouds - MyDrafts'it'c</title>
+	<meta charset="utf-8">
+	<link rel="stylesheet" type="text/css" href="lib/bootstrap/dist/css/bootstrap.min.css">
+	<link rel="stylesheet" type="text/css" href="css/style.css">
+</head>
+<body ng-controller="indexCtrl">
+	<div class="logo"><p>My<span id="drafts">Drafts</span>'it'c</p></div>
+
+	<div id="content-main">
+		<div ng-include="'view/menu.html'"></div>
+		<div ng-view></div>
+		<div ng-include="'view/footer.html'"></div>
+	</div>
+
+	<script src="lib/angular/angular.min.js"></script>
+	<script src="lib/angular-route/angular-route.min.js"></script>
+	<script src="js/myDrafts.js"></script>
+	<script src="js/config/configRoute.js"></script>
+	<script src="js/controllers/indexCtrl.js"></script>
+	<script src="js/controllers/homeCtrl.js"></script>
+	<script src="js/controllers/createaccountCtrl.js"></script>
+	<script src="js/controllers/loginCtrl.js"></script>
+	<script src="js/controllers/userCtrl.js"></script>
+	<script src="js/controllers/aboutCtrl.js"></script>
+</body>
+</html>

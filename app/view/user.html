@@ -1,0 +1,37 @@
+<div class="content">
+	<hr/>
+	<input id="pesquisa" type="text" ng-model="pesquisa" placeholder="Pesquisa">
+	<div class="tools">
+		<span class="usuario-conta">{{user.name | uppercase}}</span>
+		<button id="logout" class="btn btn-primary" ng-click="logout()">Sair</button>
+		<button id="logout" class="btn btn-primary" ng-click="!openForm()">Novo</button>
+	</div>
+	<div class="formFavorito" ng-show="toReturn">
+		<form id="formFavorite">
+			<!-- <label for="pagina" class="config">Página</label> -->
+			<input class="form-control bordas" type="text" id="pagina" ng-model="user.favorite.title" placeholder="Página">
+
+			<!-- <label for="url" class="config">URL</label> -->
+			<input class="form-control bordas" type="text" id="url" ng-model="user.favorite.url" placeholder="URL">
+
+			<!-- <label for="tags" class="config">Tag(s)</label> -->
+			<input class="form-control bordas" type="text" id="tags" ng-model="user.favorite.tags" placeholder="Tags">
+
+			<label for="description" class="config">Descrição</label>
+			<textarea col="4" row="10" class="form-control bordas" id="description" ng-model="user.favorite.description"></textarea>
+		</form>
+		<button class="btn btn-primary btn-block" ng-click="novoFavorito(user)">Salvar</button>
+	</div>
+	<div class="content-list" ng-repeat="fav in favorite | filter:pesquisa">
+		<div class="lista" >
+			<div class="cont">
+				<a href="{{fav.url}}" target="_blank">{{fav.title | uppercase}}</a><br/>
+				<span class="lb">Tags: </span>{{fav.tags}}<br/>
+				{{fav.url}}
+			</div>
+			<div class="desc">
+				<span class="lb">Descrição: </span>{{fav.description}}
+			</div>
+		</div>
+	</div>
+</div>

@@ -1,0 +1,19 @@
+{
+  "name": "MyDrafts'it'c",
+  "version": "0.0.0",
+  "description": "",
+  "main": "server.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "node server.js"
+  },
+  "dependencies": {
+    "mongoose": "~4.4.19",
+    "sha256": "~0.2.0",
+    "body-parser": "~1.15.1",
+    "validator": "~5.3.0",
+    "express": "~4.13.4"
+  },
+  "author": "Alexsandro Façanha",
+  "license": "BSD-2-Clause"
+}
