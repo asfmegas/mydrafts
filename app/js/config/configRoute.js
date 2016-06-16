@@ -12,13 +12,17 @@ angular.module('myDrafts').config(function($routeProvider){
 			controller: 'loginCtrl',
 			templateUrl: 'view/login.html'
 		})
-		.when('/users/:id',{
+		.when('/user/:id',{
 			controller: 'userCtrl',
 			templateUrl: 'view/user.html'
 		})
-		.when('/sobre',{
+		.when('/about',{
 			controller: 'aboutCtrl',
 			templateUrl: 'view/about.html'
+		})
+		.when('/note',{
+			controller: 'noteCtrl',
+			templateUrl: 'view/note.html'
 		})
 		.otherwise({
 			redirectTo: 'home'

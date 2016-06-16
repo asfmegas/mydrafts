@@ -78,10 +78,10 @@ span#drafts{
 /*Definições do menu*/
 nav#menu{
 	display: block;
-	z-index: 11;
 }
 
 nav#menu ul{
+	z-index: 6;
 	list-style: none;
 	text-transform: uppercase;
 	position: fixed;
@@ -124,6 +124,7 @@ nav#menu a:hover{
 
 /*Definindo home*/
 input#pesquisa{
+	z-index:5;
 	width: 250px;
 	position: fixed;
 	top:4%;
@@ -195,14 +196,14 @@ div.autor{
 /*Página user*/
 div.content-list{
 	width: 100%;
-	height: 70px;
+	height: 130px;
 }
 
 div.lista{
 	display: inline-block;
 	z-index: 1;
 	width: 100%;
-	height: 70px;
+	height: 130px;
 	border-bottom: 1px solid white;
 	/*border-bottom: 1px solid rgb(139,69,19);*/
 	background-color: rgba(139,69,19,0);
@@ -231,7 +232,7 @@ div.desc{
 	display: block;
 	position: relative;
 	left: 50%;
-	top: -70px;
+	top: -135px;
 	padding: 10px;
 	/*background-color: black;*/
 }
@@ -256,18 +257,32 @@ div.tools span.usuario-conta{
 	/* background-color: black; */
 }
 
-div.tools button#logout{
+div.tools button{
+	width:60px;
 	display: inline-block;
 	position: absolute;
-	padding:3px;
-	left: 90%;
-	margin-top:0;
+	padding-top:2px;
+	padding-bottom:2px;
+	margin-top:2px;
+}
+
+div.tools button#logout{
+	left: 87%;
+}
+
+div.tools button#new{
+	left: 82%;
+}
+
+div.tools button#new-note{
+	left: 77%;
 }
 
 span.lb{
 	font-weight: bold;
 	color: rgb(139,69,19);
-	font-size: .8em;
+	font-size: 0.8em;
+	cursor: pointer;
 }
 
 div a{
@@ -289,6 +304,8 @@ div.formFavorito{
 	margin-left: auto;
 	margin-right: auto;
 	margin-bottom: 20px;
+	padding: 10px;
+	background-color: rgba(139,69,19,0.4);
 }
 
 form#formFavorite input{
@@ -302,9 +319,54 @@ form#formFavorite label{
 }
 
 form#formFavorite textarea{
-	width: 702px; 
+	width: 680px; 
 	height: 85px;
 }
+
+div.acoes{
+	z-index: 4;
+	margin-left:400px;
+	/* background-color:rgba(139,69,19,0.4); */
+	position:relative;
+	top:-160px;
+}
+
+div.acoes button{
+	width:70px;
+	margin-top:2px;
+	margin-bottom:2px;
+	margin-left:5px;
+	margin-right:10px;
+	padding-top:0;
+	padding-bottom:0;
+}
+
+textarea#area-desc{
+	width: 530px;
+	height: 95px;
+	border:0;
+	background-color:rgba(139,69,19,0.2);
+	box-shadow: 1px 1px 1px black;
+}
+
+div#area-div{
+	width: 530px;
+	height: 95px;
+	/* background-color: rgba(139,69,19,0.2); */
+}
+
+div.cont input{
+	width:500px;
+	border:0;
+	margin-top: 2px;
+	background-color:rgba(139,69,19,0.2);
+	box-shadow: 1px 1px 1px black;
+}
+
+span.span-data{
+	color: rgb(139,69,19);
+}
+
 
 /* Definições login */
 form#formLogin{
@@ -313,4 +375,28 @@ form#formLogin{
 	margin-top: 10px;
 	margin-left: auto;
 	margin-right: auto;
+}
+
+/* Nota */
+div.list-note{
+	margin-top: 30px;
+}
+
+div.block-note{
+	display:block;
+	margin-top:5px;
+	width:100%;
+	height:70px;
+	padding:10px;
+	border-radius:10px;
+	border: 1px solid white;
+	box-shadow: 1px 1px 1px black;
+	/* margin-bottom:10px; */
+	background-color: rgba(139,69,19,0.5);
+}
+
+button.btn-note{
+	position:fixed;
+	top:20px;
+	left:600px;
 }

@@ -1,10 +1,10 @@
-angular.module('myDrafts').controller('createAccountCtrl',function($scope,$http,$location){
+angular.module('myDrafts').controller('createAccountCtrl',function($scope,$location,httpAPI){
 
-	$scope.cadastrarUsuario = function(usuario){
-		$http.post('http://localhost:8800/users', usuario).success(function(data){
+	$scope.registerUser = function(user){
+		httpAPI.saveUser(user).then(function(data){
 			$location.path('/login');
-		}).error(function(err){
-			console.log(err);
+		},function(error){
+			console.log(error);
 		});
 	};
 });

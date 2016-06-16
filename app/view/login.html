@@ -2,9 +2,11 @@
 	<hr/>
 	<form id="formLogin">
 		<label for="login" class="config">Login</label>
-		<input class="form-control bordas" type="text" id="login" ng-model="usuario.login" placeholder="Login">
-		<label for="password" class="config">password</label>
-		<input class="form-control bordas" type="password" id="password" ng-model="usuario.password" placeholder="password">
-		<button class="btn btn-primary btn-block" ng-click="verificarUsuario()" ng-required="form1.$invalid">Entrar</button>
+		<input class="form-control bordas" type="text" id="login" ng-model="userLogin.login" placeholder="Login" ng-required="true">
+
+		<label for="password" class="config">Password</label>
+		<input class="form-control bordas" type="password" id="password" ng-model="userLogin.password" placeholder="Password" ng-required="true">
+
+		<button class="btn btn-primary btn-block" ng-click="verifyUser(userLogin)" ng-required="form1.$invalid">Entrar</button>
 	</form>
 </div>

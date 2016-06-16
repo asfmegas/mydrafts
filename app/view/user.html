@@ -1,36 +1,53 @@
+
 <div class="content">
 	<hr/>
-	<input id="pesquisa" type="text" ng-model="pesquisa" placeholder="Pesquisa">
+	<input id="pesquisa" type="text" ng-model="search" placeholder="Pesquisa">
 	<div class="tools">
-		<span class="usuario-conta">{{user.name | uppercase}}</span>
+		<span class="usuario-conta">{{user.fullname | uppercase}} - {{user.email}}</span>
 		<button id="logout" class="btn btn-primary" ng-click="logout()">Sair</button>
-		<button id="logout" class="btn btn-primary" ng-click="!openForm()">Novo</button>
+		<button id="new" class="btn btn-primary" ng-click="openForm()">Novo</button>
+		<button id="new-note" class="btn btn-primary" ng-click="goNote()">Nota</button>
 	</div>
+	
 	<div class="formFavorito" ng-show="toReturn">
 		<form id="formFavorite">
-			<!-- <label for="pagina" class="config">Página</label> -->
-			<input class="form-control bordas" type="text" id="pagina" ng-model="user.favorite.title" placeholder="Página">
 
-			<!-- <label for="url" class="config">URL</label> -->
-			<input class="form-control bordas" type="text" id="url" ng-model="user.favorite.url" placeholder="URL">
+			<input class="form-control bordas" type="text" id="pagina" ng-model="newFavorite.title" placeholder="Página">
 
-			<!-- <label for="tags" class="config">Tag(s)</label> -->
-			<input class="form-control bordas" type="text" id="tags" ng-model="user.favorite.tags" placeholder="Tags">
+			<input class="form-control bordas" type="text" id="url" ng-model="newFavorite.url" placeholder="URL">
+
+			<input class="form-control bordas" type="text" id="tags" ng-model="newFavorite.tags" placeholder="Tags">
 
 			<label for="description" class="config">Descrição</label>
-			<textarea col="4" row="10" class="form-control bordas" id="description" ng-model="user.favorite.description"></textarea>
+			<textarea col="4" row="10" class="form-control bordas" id="description" ng-model="newFavorite.description"></textarea>
 		</form>
-		<button class="btn btn-primary btn-block" ng-click="novoFavorito(user)">Salvar</button>
+		<button class="btn btn-primary btn-block" ng-click="registerFavorite(newFavorite)">Salvar</button>
 	</div>
-	<div class="content-list" ng-repeat="fav in favorite | filter:pesquisa">
+	<div class="content-list" ng-repeat="fav in favorite | orderBy:'-created_at' | filter:search">
 		<div class="lista" >
 			<div class="cont">
-				<a href="{{fav.url}}" target="_blank">{{fav.title | uppercase}}</a><br/>
-				<span class="lb">Tags: </span>{{fav.tags}}<br/>
-				{{fav.url}}
+				<!-- Título -->
+				<span class="lb" ng-click="isViewTitle = !isViewTitle">Título: </span>
+				<input type="text" ng-if="isViewTitle" value="{{fav.title}}" ng-model="fav.title">
+				<a href="{{fav.url}}" target="_blank" ng-if="!isViewTitle">{{fav.title | uppercase}}</a><br/>
+				<!-- Tags -->
+				<span class="lb" ng-click="isViewTags = !isViewTags">Tags: </span>
+				<input type="text" value="{{fav.tags}}" ng-if="isViewTags" ng-model="fav.tags">
+				<span ng-if="!isViewTags">{{fav.tags}} - <span class="span-data">{{fav.created_at | date:'dd/MM/yyyy'}}</span></span><br/>
+				<!-- URL -->
+				<span class="lb" ng-click="isViewUrl = !isViewUrl">URL: </span>
+				<input type="text" value="{{fav.url}}" ng-if="isViewUrl" ng-model="fav.url">
+				<span ng-if="!isViewUrl">{{fav.url}}</span>
 			</div>
+			<!-- Descrição -->
 			<div class="desc">
-				<span class="lb">Descrição: </span>{{fav.description}}
+				<span class="lb" ng-click="isViewDesc = !isViewDesc">Descrição: </span><br/>				
+				<div id="area-div" ng-if="!isViewDesc">{{fav.description}}</div>
+				<textarea id="area-desc" cols="55" rows="5" ng-if="isViewDesc" ng-model="fav.description">{{fav.description}}</textarea>
+			</div>
+			<div class="acoes">
+				<button class="btn btn-primary" ng-click="updateFav(fav)">Editar</button>
+				<button class="btn btn-primary" ng-click="dropFavorite(fav)">Apagar</button>
 			</div>
 		</div>
 	</div>

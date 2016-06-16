@@ -1,63 +1,36 @@
-var app = require('./appConfig');
-var userController = require('./controller/userController');
-var validator = require('validator');
-var sha256 = require('sha256');
+var express = require('express');
 
-app.get('/',function(req,res){
-	res.end('Servidor ON');
+var app = module.exports = express();
+
+var bodyParser = require('body-parser');
+app.use(bodyParser.json());
+app.use(bodyParser.urlencoded({extended:true}));
+
+var user = require('./users');
+var favorite = require('./favorite');
+
+app.all('*', function(req, res, next) {
+  res.header('Access-Control-Allow-Origin', '*');
+  res.header('Access-Control-Allow-Methods', 'PUT, GET, POST, DELETE, OPTIONS');
+  res.header('Access-Control-Allow-Headers', 'Content-Type');
+  next();
 });
 
-app.get('/users',function(req,res){
 
-	userController.list(function(rest){
-		res.json(rest);
-	});
+app.listen(3000, function(){
+	console.log("Servidor rodando na porta 3000...");
 });
 
-app.get('/users/:id',function(req,res){
+app.get('/', user.root);
 
-	var id = validator.trim(validator.escape(req.params.id));
+app.get('/users', user.list);
+app.get('/user/:id', user.getByIdUser);
+app.post('/users', user.save);
+app.post('/user', user.getUser);
+app.put('/users', user.update);
+app.delete('/users/:id', user.delete);
 
-	userController.getUser(id,function(resp){
-		res.json(resp);
-	});
-});
-
-app.post('/users',function(req,res){
-
-	var user = req.body;
-	user.name = validator.trim(validator.escape(user.name));
-	user.login = validator.trim(validator.escape(user.login));
-	// user.password = sha256(validator.trim(validator.escape(user.password)));
-	user.password = validator.trim(validator.escape(user.password));
-	user.email = validator.trim(validator.escape(user.email));
-
-	userController.save(user,function(resp){
-		res.json(resp);
-	});
-});
-
-app.put('/users',function(req,res){
-
-	var user = req.body;
-
-	user.id = validator.trim(validator.escape(user.id));
-	user.name = validator.trim(validator.escape(user.name));
-	user.login = validator.trim(validator.escape(user.login));
-	user.email = validator.trim(validator.escape(user.email));
-	// user.password = sha256(validator.trim(validator.escape(user.password)));
-
-	userController.update(user,function(resp){
-		res.json(resp);
-	});
-});
-
-app.delete('/users/:id',function(req,res){
-
-	var id = validator.trim(validator.escape(req.params.id));
-	
-	userController.delete(id,function(resp){
-		res.json(resp);
-	});
-});
-		
+app.get('/user/:id/favorite', favorite.list);
+app.post('/user/:id/favorite', favorite.save);
+app.put('/user/favorite', favorite.update);
+app.delete('/user/favorite/:id', favorite.delete);

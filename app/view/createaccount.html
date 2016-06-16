@@ -3,18 +3,18 @@
 	<div id="form1">
 		<form>
 			<label for="name" class="config">Nome</label>
-			<input class="form-control bordas" type="text" id="name" ng-model="usuario.name" placeholder="Nome" ng-required="true">
+			<input class="form-control bordas" type="text" id="name" ng-model="user.fullname" placeholder="Nome" ng-required="true">
 
 			<label for="email" class="config">Email</label>
-			<input class="form-control bordas" type="email" id="email" ng-model="usuario.email" placeholder="Email" ng-required="true">
+			<input class="form-control bordas" type="email" id="email" ng-model="user.email" placeholder="Email" ng-required="true">
 
 			<label for="login" class="config">Login</label>
-			<input class="form-control bordas" type="text" id="login" ng-model="usuario.login" placeholder="Login" ng-required="true">
+			<input class="form-control bordas" type="text" id="login" ng-model="user.login" placeholder="Login" ng-required="true">
 
-			<label for="password" class="config">password</label>
-			<input class="form-control bordas" type="password" id="password" ng-model="usuario.password" placeholder="password" ng-required="true">
+			<label for="password" class="config">Password</label>
+			<input class="form-control bordas" type="password" id="password" ng-model="user.password" placeholder="password" ng-required="true">
 		</form>
 
-		<button class="btn btn-primary btn-block" ng-click="cadastrarUsuario(usuario)" ng-disabled="form1.$invalid">Criar Nova Conta</button>
+		<button class="btn btn-primary btn-block" ng-click="registerUser(user)" ng-disabled="form1.$invalid">Criar Nova Conta</button>
 	</div>
 </div>

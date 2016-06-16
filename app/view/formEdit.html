@@ -1,0 +1,14 @@
+<div class="formFavorito" ng-show="toReturn">
+	<form id="formFavorite">
+
+		<input class="form-control bordas" type="text" id="pagina" ng-model="newFavorite.title" placeholder="Página">
+
+		<input class="form-control bordas" type="text" id="url" ng-model="newFavorite.url" placeholder="URL">
+
+		<input class="form-control bordas" type="text" id="tags" ng-model="newFavorite.tags" placeholder="Tags">
+
+		<label for="description" class="config">Descrição</label>
+		<textarea col="4" row="10" class="form-control bordas" id="description" ng-model="newFavorite.description"></textarea>
+	</form>
+	<button class="btn btn-primary btn-block" ng-click="registerFavorite(newFavorite)">Salvar</button>
+</div>
